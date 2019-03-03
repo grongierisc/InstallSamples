@@ -11,19 +11,25 @@ XData Install [ XMLNamespace = INSTALLER ]
 
     <Log Text="Version d'IRIS ${VERSION}" Level="0"/>
 
-    <If Condition='(##class(Config.Namespaces).Exists("SAMPLES")=0)'>
-        <Log Text="Creating namespace SAMPLES" Level="0"/>
+    <If Condition='$L("${NAMESPACE}")=0'>
+        <Error Status="$$$NamespaceDoesNotExist">
+            <Arg Value="${NAMESPACE}"/>
+        </Error>
+    </If>
+
+    <If Condition='(##class(Config.Namespaces).Exists("${NAMESPACE}")=0)'>
+        <Log Text="Creating namespace ${NAMESPACE}" Level="0"/>
         <CopyDir  
 		    Src="${DirSamples}"
-            Target="${MGRDIR}/SAMPLES"
+            Target="${MGRDIR}/${NAMESPACE}"
             IgnoreErrors="0"/>
             
-        <Namespace Name="SAMPLES" Create="yes" Code="SAMPLES" Ensemble="1" Data="SAMPLES">
+        <Namespace Name="${NAMESPACE}" Create="yes" Code="${NAMESPACE}" Ensemble="1" Data="${NAMESPACE}">
             <Configuration>
-                <Database Name="SAMPLES" Dir="${MGRDIR}/SAMPLES" Create="no"/>
+                <Database Name="${NAMESPACE}" Dir="${MGRDIR}/${NAMESPACE}" Create="no"/>
             </Configuration>
         
-            <CSPApplication Url="/csp/SAMPLES" Directory="${CSPDIR}/SAMPLES" AuthenticationMethods="64" IsNamespaceDefault="true" Grant="AppRole" />
+            <CSPApplication Url="/csp/${NAMESPACE}" Directory="${CSPDIR}/${NAMESPACE}" AuthenticationMethods="64" IsNamespaceDefault="true" Grant="AppRole" />
 
         </Namespace>
     </If>
