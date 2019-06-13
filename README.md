@@ -21,7 +21,7 @@ git lfs clone https://github.com/grongierisc/InstallSamples.git
 And run install.sh
 
 ```
-sh install.sh <IRIS Instance> <IRIS SuperUser Password>
+sh install.sh <IRIS Instance> <IRIS SuperUser Password> 
 ```
 
 ### Content of this project
