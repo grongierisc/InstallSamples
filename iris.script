@@ -1,0 +1,16 @@
+
+    do $system.OBJ.ImportDir("/opt/irisapp/install/App","*.cls","cubk",.errors,1)
+    write "Complation de l'installer done"
+    Set pVars("DirSamples")="/opt/irisapp/samples"
+    Set pVars("NAMESPACE")="SAMPLES"
+    Do ##class(App.Installer).setup(.pVars)
+    
+    zn "%SYS"
+
+    Do ##class(Security.Users).UnExpireUserPasswords("*")
+    
+    set props("DeepSeeEnabled")=1
+    set sc=##class(Security.Applications).Modify("/csp/samples", .props)
+
+
+halt

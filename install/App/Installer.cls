@@ -24,7 +24,7 @@ XData Install [ XMLNamespace = INSTALLER ]
             Target="${MGRDIR}/${NAMESPACE}"
             IgnoreErrors="0"/>
             
-        <Namespace Name="${NAMESPACE}" Create="yes" Code="${NAMESPACE}" Ensemble="1" Data="${NAMESPACE}">
+        <Namespace Name="${NAMESPACE}" Create="yes" Code="${NAMESPACE}" Ensemble="no" Data="${NAMESPACE}">
             <Configuration>
                 <Database Name="${NAMESPACE}" Dir="${MGRDIR}/${NAMESPACE}" Create="no"/>
             </Configuration>

@@ -1,6 +1,17 @@
 {
-    "objectscript.conn.password": "password",
-    "objectscript.autoCompile": true,
-    "objectscript.conn.active": true,
-    "objectscript.conn.version": 3
+    "files.associations": {
+    
+        "Dockerfile*": "dockerfile",
+        "iris.script": "objectscript"
+      },
+    "objectscript.conn" :{
+        "ns": "SAMPLES",
+        "username": "SuperUser",
+        "docker-compose": {
+            "service": "iris",
+            "internalPort": 52773
+        },
+        "active": true
+    }
+
 }
