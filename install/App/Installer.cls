@@ -37,10 +37,17 @@ XData Install [ XMLNamespace = INSTALLER ]
 </Manifest>
 }
 
+ClassMethod install(pNamespace As %String, pDirSamples As %String, ByRef pVars) As %Status
+{
+    if pNamespace'="" Set pVars("NAMESPACE")=pNamespace
+    if pDirSamples'="" Set pVars("DirSamples")=pDirSamples
+
+    Do ##class(App.Installer).setup(.pVars)
+}
+
 ClassMethod setup(ByRef pVars, pLogLevel As %Integer = 0, pInstaller As %Installer.Installer) As %Status [ CodeMode = objectgenerator, Internal ]
 {
-	
-     Quit ##class(%Installer.Manifest).%Generate(%compiledclass, %code, "Install")
+    Quit ##class(%Installer.Manifest).%Generate(%compiledclass, %code, "Install")
 }
 
 }
